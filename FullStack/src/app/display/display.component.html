@@ -1,0 +1,38 @@
+
+<!-- <app-add-data></app-add-data> -->
+<button [hidden]="isHidden" (click)="changeHidden($event)">Add Row</button>
+<form #f="ngForm" (ngSubmit)='addProduct()' [hidden]="!isHidden" >                        <!-- form>((label+input)*2+input)-->
+    <label for=""> Product Id</label>
+    <input type="text" name="productId" [(ngModel)]='rowToAdd.productId'><br/>
+    <label for=""> Product Name</label>
+    <input type="text" name="productName" [(ngModel)]='rowToAdd.productName'><br/>
+    <label for=""> Image</label>
+    <input type="text" name="refName" [(ngModel)]='rowToAdd.refName'><br/>
+    <label for=""> Price </label>
+    <input type="text" name="price" [(ngModel)]='rowToAdd.price'><br/>
+    <label for=""> Rating</label>
+    <input type="text" name="rating" [(ngModel)]='rowToAdd.rating'><br/>
+    <input type="submit" value="Add Row">
+</form>
+
+<table class="table table-stripped">
+    <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Rating</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let eachRow of productList">
+        <td>{{eachRow.productId}}</td>
+        <td>{{eachRow.productName}}</td>
+        <!-- <td><img src="{{eachRow.refName}}" alt="Dell Image" /></td> -->
+        <td>{{eachRow.refName}}</td>
+        <td>{{eachRow.price}}</td>
+        <td>{{eachRow.rating}}</td>
+        <td><button>Edit Row</button></td>
+        <td><button (click)="deleteRow(eachRow)">Delete Row</button></td>
+    </tr>
+</table>
